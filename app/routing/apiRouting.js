@@ -1,14 +1,14 @@
-var friendData = require('../data/friends.js');
-// var path = require('path');
+var friends = require("../data/friends.js");
 
-module.exports = function(app){ 
+module.exports = function(app) { 
     
 app.get('/api/friends', function(req,res) {
     res.json(friendData);
 });
 
 
-app.post('api/friends', function(req,res) { 
+
+app.post('/api/friends', function(req,res) { 
     var bestMatch = {
         name: "",
         photo: "",
@@ -52,6 +52,6 @@ app.post('api/friends', function(req,res) {
 
 //return json with users best match
 
-    res.json(bestMatch);
+    return res.json(bestMatch);
     });
 }

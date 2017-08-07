@@ -158,10 +158,9 @@
 
         </div>
     
-        <!-- Modal (bootstrap)-->
-        <div id="resultsModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
+<!-- Modal -->
+<div id="resultsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -175,10 +174,10 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
-          </div>
-      </div>
+        </div>
     </div>
-    
+</div>
+
 
 <script type="text/javascript">
 
@@ -187,7 +186,7 @@
         '.chosen-select': {},
         '.chosen-select-deselect': { allow_single_deselect: true },
         '.chosen-select-no-single': { disable_search_threshold: 10 },
-        '.chosen-select-no-results': { no_results_text: 'Nothing Found!' },
+        '.chosen-select-no-results': {no_results_text: 'Oops, nothing found!'},
         '.chosen-select-width': { width: "95%" }
     }
 
@@ -208,7 +207,7 @@
 
             $(".chosen-select").each(function () {
                 if ($(this).val() === "") 
-                    isValid = false
+                    isValid = false;
             })
             return isValid;
         }
@@ -233,22 +232,23 @@
 //grab site url
             var currentURL = window.location.origin;
 // AJAX post the data to friends api
-            $.post(currentURL + '/api/friends', surveyInput, function(data) {
-                $("#matchName").text(data.name);
-                $('#matchImg').attr("src", data.photo);
-
-                //this modal shows the best match
-                $("#resultsModal").modal('toggle');
-            });
-        }
-        else 
-        {
-            alert("Please make sure you fill out all fields before you submit!");
-        }
-        return false;
-    });
-   
-   
+            $.post(currentURL + "/api/friends", surveyInput, function (data) {
+                    // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                    $("#matchName").text(data.name);
+                    $('#matchImg').attr("src", data.photo);
+                    $('#matchImg').css({
+                        'width': '70%',
+                        'height': '70%'
+                    });
+                    
+                    // Show the modal with the best match 
+                    $("#resultsModal").modal('toggle');
+                });
+                } else {
+                    alert("Please fill out all fields before submitting!");
+                }
+                return false;
+                });
 </script>
 
 </body>
