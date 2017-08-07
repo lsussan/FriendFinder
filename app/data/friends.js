@@ -132,7 +132,7 @@ var friends = [
 },
 {
     "name": "Ned",
-    "photo": "       ",
+    "photo": "http://troll.me/images2/ned-flanders/ned-flanders.jpg",
     "scores": [
         2,
         2,

@@ -5,7 +5,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-
 //configure express / tell node that we are creating express server
 var app = express();
 
@@ -17,6 +16,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+// needs to be called before the routes in order to work
+app.use(express.static('app/public'));
 
 //Router - points server to 'route' files
 require("./app/routing/apiRouting.js")(app);
